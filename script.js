@@ -1,23 +1,23 @@
-const products = [
-    { id: 1, name: 'Makanan Anjing', emoji: '🍖', price: 'Rp 55.000' },
-    { id: 2, name: 'Makanan Kucing', emoji: '🐟', price: 'Rp 48.000' },
-    { id: 3, name: 'Sangkar Burung', emoji: '🐦', price: 'Rp 135.000' },
-    { id: 4, name: 'Akuarium Ikan', emoji: '🐠', price: 'Rp 275.000' },
-    { id: 5, name: 'Tali Anjing', emoji: '🦮', price: 'Rp 38.000' },
-    { id: 6, name: 'Mainan Kucing', emoji: '🧶', price: 'Rp 22.000' },
-    { id: 7, name: 'Vitamin Hewan', emoji: '💊', price: 'Rp 65.000' },
-    { id: 8, name: 'Sisir Bulu', emoji: '🪮', price: 'Rp 30.000' }
-];
+    const products = [
+        { id: 1, name: 'Makanan Anjing', emoji: '🍖', price: 'Rp 55.000' },
+        { id: 2, name: 'Makanan Kucing', emoji: '🐟', price: 'Rp 48.000' },
+        { id: 3, name: 'Sangkar Burung', emoji: '🐦', price: 'Rp 135.000' },
+        { id: 4, name: 'Akuarium Ikan', emoji: '🐠', price: 'Rp 275.000' },
+        { id: 5, name: 'Tali Anjing', emoji: '🦮', price: 'Rp 38.000' },
+        { id: 6, name: 'Mainan Kucing', emoji: '🧶', price: 'Rp 22.000' },
+        { id: 7, name: 'Vitamin Hewan', emoji: '💊', price: 'Rp 65.000' },
+        { id: 8, name: 'Sisir Bulu', emoji: '🪮', price: 'Rp 30.000' }
+    ];
 
     let cartItems = [];        // menyimpan objek produk yang dibeli
     let cartCount = 0;
 
-
+    // DOM Elements
     const grid = document.getElementById('productGrid');
     const cartCountEl = document.getElementById('cartCount');
     const toastEl = document.getElementById('toast');
     const cartBtn = document.getElementById('cartBtn');
-
+    
     function renderProducts() {
         grid.innerHTML = ''; // kosongkan dulu
 
@@ -35,7 +35,6 @@ const products = [
             grid.appendChild(card);
         });
 
-        // Pasang event listener ke semua tombol "Beli"
         document.querySelectorAll('.btn-beli').forEach(btn => {
             btn.addEventListener('click', function() {
                 const id = parseInt(this.dataset.id);
@@ -53,6 +52,7 @@ const products = [
         cartCount++;
         cartCountEl.textContent = cartCount;
 
+        // Tampilkan toast dengan nama produk
         showToast(`✅ ${product.name} ditambahkan! (${product.price})`);
     }
 
@@ -75,6 +75,7 @@ const products = [
             return;
         }
 
+        // Buat daftar isi keranjang (alert atau console, biar simpel)
         const names = cartItems.map(item => `- ${item.emoji} ${item.name} (${item.price})`).join('\n');
         alert(`🛒 Isi Keranjang (${cartItems.length} item):\n\n${names}\n\nTotal: ${cartItems.length} produk`);
     });
